@@ -1,0 +1,10 @@
+<h1>Discount Index</h1>
+
+<%= @discounts.each do |discount| %>
+  <section id="discount-<%=discount.id%>">
+    <h3><%= discount.name %></h3>
+    <p>Discount %: <%= discount.percentage %></p>
+    <p>If items exceeds: <%= discount.min_items %></p>
+    <%= discount.description %>
+  </section>
+<% end %>
