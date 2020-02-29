@@ -1,6 +1,6 @@
 <h1>Add Discount</h1>
 
-<%= form_tag "/merchant/discounts", method: :post do %>
+<%= form_tag "/merchant/#{@merchant.id}/discounts", method: :post do %>
 
     <%= label_tag :name %>
     <%= text_field_tag :name %>
@@ -11,8 +11,8 @@
     <%= label_tag :min_items %>
     <%= text_field_tag :min_items %>
 
-    <%= label_tag :decription %>
-    <%= text_field_tag :decription %>
+    <%= label_tag :description %>
+    <%= text_field_tag :description %>
 
     <%= submit_tag 'Submit' %>
   <% end %>
