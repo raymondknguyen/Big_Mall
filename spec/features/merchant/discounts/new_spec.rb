@@ -13,18 +13,18 @@ RSpec.describe "As a merchant", type: :feature do
 
       click_on "Add Bulk Discount"
 
-      expect(current_path).to eq("/merchant/discounts/new")
+      expect(current_path).to eq("/merchant/#{@merchant.id}/discounts/new")
 
       fill_in :name, with: "10% Discount!"
       fill_in :percentage, with: 10
       fill_in :min_items, with: 10
-      fill_in :decription, with: "If you buy 10 items or more you get 10% off each items from this merchant"
+      fill_in :description, with: "If you buy 10 items or more you get 10% off each items from this merchant"
 
       click_on "Submit"
 
       new_discount = Discount.last
 
-      expect(current_path).to eq("/merchant/discounts")
+      expect(current_path).to eq("/merchant/#{@merchant.id}/discounts")
       expect(new_discount.name).to eq("10% Discount!")
       expect(page).to have_content(new_discount.name)
       expect(page).to have_content("Discount %: 10")
