@@ -24,12 +24,12 @@ RSpec.describe "As a merchant", type: :feature do
 
       new_discount = Discount.last
 
-      expect(current_path).to eq("/merchant/#{@merchant.id}/discounts")
+      expect(current_path).to eq("/merchant/discounts")
       expect(new_discount.name).to eq("10% Discount!")
       expect(page).to have_content(new_discount.name)
       expect(page).to have_content("Discount %: 10")
       expect(page).to have_content("If items exceeds: 10")
-      expect(page).to have_content(new_discount.decription)
+      expect(page).to have_content(new_discount.description)
     end
   end
 end
