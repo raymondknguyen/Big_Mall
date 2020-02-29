@@ -1,4 +1,9 @@
 class Merchant::DiscountsController < ApplicationController
+
+  def index
+    @discounts = Discount.all
+  end
+
   def new
     @merchant = Merchant.find(params[:merchant_id])
   end
@@ -6,6 +11,9 @@ class Merchant::DiscountsController < ApplicationController
   def create
     merchant = Merchant.find(params[:merchant_id])
     @discount = merchant.discounts.create(discount_params)
+    if @discount.save 
+      redirect_to "/merchant/discounts"
+    end
   end
 
   private
