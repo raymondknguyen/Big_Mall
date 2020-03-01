@@ -31,5 +31,24 @@ RSpec.describe "As a merchant", type: :feature do
       expect(page).to have_content("If items exceeds: 10")
       expect(page).to have_content(new_discount.description)
     end
+
+    it "cant add a discount if field is missing" do
+      visit "/merchant"
+
+      click_on "Add Bulk Discount"
+
+      expect(current_path).to eq("/merchant/#{@merchant.id}/discounts/new")
+
+      fill_in :name, with: "10% Discount!"
+      fill_in :percentage, with: 10
+      fill_in :min_items, with: 10
+      fill_in :description, with: ""
+
+      click_on "Submit"
+
+      expect(current_path).to eq("/merchant/#{@merchant.id}/discounts/new")
+
+      expect(page).to have_content("Description can't be blank")
+    end
   end
 end
