@@ -7,5 +7,6 @@
     <p>If items exceeds: <%= discount.min_items %></p>
     <p><%= discount.description %></p>
     <%= link_to "Edit", "/merchant/discounts/#{discount.id}/edit" %>
+    <%= link_to "Delete", "/merchant/discounts/#{discount.id}", method: :delete %>
   </section>
 <% end %>
