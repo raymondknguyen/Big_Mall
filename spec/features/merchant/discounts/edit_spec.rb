@@ -40,6 +40,27 @@ RSpec.describe "As a Merchant" do
         expect(page).to have_content("If items exceeds: 50")
         expect(page).to have_content("description change")
       end 
+
+      it "cant update if fields are missing" do 
+        visit "/merchant/discounts"
+
+        within "#discount-#{@discount_1.id}" do
+         click_on "Edit"
+        end
+
+        expect(current_path).to eq("/merchant/discounts/#{@discount_1.id}/edit")
+
+        fill_in :name, with: "name change"
+        fill_in :percentage, with: 30
+        fill_in :min_items, with: 50
+        fill_in :description, with: ""
+
+        click_on "Update Discount"
+
+        expect(current_path).to eq("/merchant/discounts/#{@discount_1.id}/edit")
+      
+        expect(page).to have_content("Description can't be blank")
+      end
     end
   end
 end
