@@ -11,7 +11,7 @@ RSpec.describe "As a Merchant" do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant_employee)
       end
       
-      it 'I can see the prepopulated fields of that item and update it' do
+      it 'can see the prepopulated fields of that item and update it' do
 
         visit "/merchant/discounts"
 
