@@ -12,7 +12,11 @@ class Merchant::DiscountsController < ApplicationController
     merchant = Merchant.find(params[:merchant_id])
     @discount = merchant.discounts.create(discount_params)
     if @discount.save 
+      flash[:success] = "#{@discount.name} has been created."
       redirect_to "/merchant/discounts"
+    else  
+      flash[:error] = @discount.errors.full_messages.to_sentence
+      redirect_to "/merchant/#{merchant.id}/discounts/new"
     end
   end
 
