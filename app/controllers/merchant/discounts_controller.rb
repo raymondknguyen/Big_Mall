@@ -26,8 +26,12 @@ class Merchant::DiscountsController < ApplicationController
 
   def update
     discount = Discount.find(params[:id])
-    discount.update(discount_params)
-    redirect_to "/merchant/discounts"
+    if discount.update(discount_params)
+      redirect_to "/merchant/discounts"
+    else
+      flash[:error] = discount.errors.full_messages.to_sentence
+      redirect_to "/merchant/discounts/#{discount.id}/edit"
+    end
   end
 
   def destroy
