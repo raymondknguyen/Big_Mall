@@ -12,17 +12,27 @@ class Profile::OrdersController < Profile::BaseController
 
   def create
     order = current_user.orders.create(order_params)
+    
     if order.save
-      cart.items.each do |item,quantity|
-        order.item_orders.create({
-          item: item,
-          quantity: quantity,
-          price: item.price
-          })
-      end
-      session.delete(:cart)
-      flash[:success] = "Your order was created."
-      redirect_to "/profile/orders"
+      cart.items.each do |item, quantity|
+        if item.check_for_discount(quantity)
+          order.item_orders.create({
+            item: item,
+            quantity: quantity,
+            price: item.price - (item.price * (item.check_for_discount(quantity).percentage * 0.01))
+            })
+          else
+            order.item_orders.create({
+            item: item,
+            quantity: quantity,
+            price: item.price
+            })
+          end
+        end
+        session.delete(:cart)
+        flash[:success] = "Your order was created."
+        redirect_to "/profile/orders"
+  
     else
       flash[:error] = "Please complete address form to create an order."
       render :new
