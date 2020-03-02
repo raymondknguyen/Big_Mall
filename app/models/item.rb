@@ -36,4 +36,11 @@ class Item <ApplicationRecord
     item_orders.sum(:quantity)
   end
 
+  def check_for_discount(quantity)
+    if merchant.discounts == []
+      false
+    else
+      self.merchant.discounts.where('discounts.min_items <= ?', quantity).order(min_items: :DESC).take
+    end
+  end
 end
