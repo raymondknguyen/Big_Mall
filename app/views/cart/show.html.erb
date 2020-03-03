@@ -63,7 +63,7 @@
     </tr>
   <% end %>
 </table>
-  <p>Total without discount: <%= number_to_currency(cart.total) %></p>
+  <p>Total: <%= number_to_currency(cart.total) %></p>
   <p><%= link_to "Empty Cart", "/cart", method: :delete %></p>
   <p><%= link_to "Checkout", "profile/orders/new", method: :get if current_user%></p>
 <% else %>
