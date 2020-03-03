@@ -1,4 +1,5 @@
 <%= render partial: "/partials/merchant_dashboard", locals: {
   path: "merchant/orders/"
 } %>
-  <h2><%= link_to "Add Bulk Discount", "/merchant/#{@merchant.id}/discounts/new" %></h2>
+  <h2><%= link_to "Add Bulk Discount", "/merchant/#{@merchant.id}/discounts/new" %></h2><br>
+  <h2><%= link_to "Discount Index", "/merchant/discounts" %></h2>
