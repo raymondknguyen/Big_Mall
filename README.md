@@ -1,3 +1,48 @@
+# Monster Shop - Bulk Discount 
+
+Story 1: 
+As a merchant 
+When i visit the merchant dashboard i can add a discount to an item.
+When i click on "Add discount", "/merchant/dashboard/discount/new"
+I see a form to add a discount (percentage) and number of items
+Click on "Submit"
+
+see persisting flash "Discount has been added"
+
+
+
+
+Step 1: 
+Make test for bulk_discount model.
+-discount
+-item number
+-merchant_id
+
+Make
+CRUD 
+
+<!-- Bulk Discount
+General Goals
+Merchants add bulk discount rates for all of their inventory. These apply automatically in the shopping cart, and adjust the order_items price upon checkout.
+
+Completion Criteria
+Merchants need full CRUD functionality on bulk discounts, and will be accessed a link on the merchant's dashboard.
+You will implement a percentage based discount:
+5% discount on 20 or more items
+A merchant can have multiple bulk discounts in the system.
+When a user adds enough value or quantity of a single item to their cart, the bulk discount will automatically show up on the cart page.
+A bulk discount from one merchant will only affect items from that merchant in the cart.
+A bulk discount will only apply to items which exceed the minimum quantity specified in the bulk discount. (eg, a 5% off 5 items or more does not activate if a user is buying 1 quantity of 5 different items; if they raise the quantity of one item to 5, then the bulk discount is only applied to that one item, not all of the others as well)
+When there is a conflict between two discounts, the greater of the two will be applied.
+Mod 2 Learning Goals reflected:
+Database relationships and migrations
+Advanced ActiveRecord
+Software Testing
+ -->
+
+
+
+
 # Monster Shop - Turing Back End Engineering, Module 2, Group Project
 #### Heroku Link
 https://monster-shop-dreamteam.herokuapp.com/
