@@ -39,7 +39,7 @@ class Merchant::DiscountsController < ApplicationController
     discount.destroy
     redirect_to "/merchant/discounts"
     
-  end
+    end
 
   private
 
