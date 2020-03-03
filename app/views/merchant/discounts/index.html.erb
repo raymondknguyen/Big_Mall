@@ -1,11 +1,11 @@
 <h1>Discount Index</h1>
 
-<%= @discounts.each do |discount| %>
+<% @discounts.each do |discount| %>
   <section id="discount-<%=discount.id%>">
     <h3><%= discount.name %></h3>
     <p>Discount %: <%= discount.percentage %></p>
     <p>If items exceeds: <%= discount.min_items %></p>
-    <p><%= discount.description %></p>
+    <p>Description: <%= discount.description %></p>
     <%= link_to "Edit", "/merchant/discounts/#{discount.id}/edit" %>
     <%= link_to "Delete", "/merchant/discounts/#{discount.id}", method: :delete %>
   </section>
