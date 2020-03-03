@@ -32,7 +32,6 @@ class Profile::OrdersController < Profile::BaseController
         session.delete(:cart)
         flash[:success] = "Your order was created."
         redirect_to "/profile/orders"
-  
     else
       flash[:error] = "Please complete address form to create an order."
       render :new
