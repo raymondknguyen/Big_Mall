@@ -1,13 +1,16 @@
 require "rails_helper"
 
 RSpec.describe "as a user" do
-  it "can add discount to merchant items" do
+  before :each do
     @merchant = create(:random_merchant)
     @discount_1 = @merchant.discounts.create(name: "10% Discount!", percentage: 10, min_items: 10, description: "If you buy 10 items or more you get 10% off each items from this merchant")
-    user = create(:regular_user)
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-    item_1 = Item.create(name: "Awaken, My Love! - Childish Gambino", description: "PbR&B", price: 10, image: "https://s7d5.scene7.com/is/image/UrbanOutfitters/54839923_001_b?$xlarge$&hei=900&qlt=80&fit=constrain", inventory: 20, merchant: @merchant)
-
+    @discount_2 = @merchant.discounts.create(name: "5% Discount!", percentage: 5, min_items: 5, description: "If you buy 5 items or more you get 5% off each items from this merchant")
+    @user = create(:regular_user)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+  end
+  it "can add discount to merchant items" do
+    item_1 = Item.create(name: "Awaken, My Love! - Childish Gambino", description: "PbR&B", price: 100, image: "https://s7d5.scene7.com/is/image/UrbanOutfitters/54839923_001_b?$xlarge$&hei=900&qlt=80&fit=constrain", inventory: 20, merchant: @merchant)
+    
     i = 0
     loop do 
       visit "/items/#{item_1.id}"
@@ -17,9 +20,13 @@ RSpec.describe "as a user" do
         break 
       end
     end
-
+    
     visit "/cart"
 
+    within "#cart-item-#{item_1.id}" do
+      expect(page).to have_content("$90.00")
+    end
+    
     click_on "Checkout"
 
     fill_in :name, with: "John Bill"
@@ -30,7 +37,6 @@ RSpec.describe "as a user" do
 
     click_on "Create Order"
 
-    expect(page).to have_content("Total: $90")
   end
 end
 
