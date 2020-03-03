@@ -36,6 +36,11 @@ RSpec.describe "as a user" do
 
     click_on "Create Order"
 
+    new_order = Order.last
+
+    expect(page).to have_content("Order##{new_order.id}")
+    expect(page).to have_content("Grand total: $900.00")
+
   end
 
   it "can only process one discount" do
@@ -57,11 +62,24 @@ RSpec.describe "as a user" do
     visit "/cart"
 
     within "#cart-item-#{item_1.id}" do
+      expect(page).to have_content("$80.00")
       expect(page).to have_content("$1,600.00")
     end
     
     click_on "Checkout"
     
+    fill_in :name, with: "John Bill"
+    fill_in :address, with: "1491 Street St"
+    fill_in :city, with: "Denver"
+    fill_in :state, with: "CO"
+    fill_in :zip, with: "801231"
+
+    click_on "Create Order"
+
+    new_order = Order.last
+
+    expect(page).to have_content("Order##{new_order.id}")
+    expect(page).to have_content("Grand total: $1,600.00")
   end
 end
 
