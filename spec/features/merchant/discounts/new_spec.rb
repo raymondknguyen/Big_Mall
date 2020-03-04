@@ -50,5 +50,54 @@ RSpec.describe "As a merchant", type: :feature do
 
       expect(page).to have_content("Description can't be blank")
     end
+
+    it "cant add minimum item if negative or string" do
+      visit "/merchant"
+
+      click_on "Add Bulk Discount"
+
+      expect(current_path).to eq("/merchant/#{@merchant.id}/discounts/new")
+
+      fill_in :name, with: "10% Discount!"
+      fill_in :percentage, with: 10
+      fill_in :min_items, with: "string"
+      fill_in :description, with: "something"
+
+      click_on "Submit"
+
+      expect(current_path).to eq("/merchant/#{@merchant.id}/discounts/new")
+
+      expect(page).to have_content("Min items is not a number")
+      
+      fill_in :name, with: "10% Discount!"
+      fill_in :percentage, with: 10
+      fill_in :min_items, with: -10
+      fill_in :description, with: "something"
+
+      click_on "Submit"
+
+      expect(current_path).to eq("/merchant/#{@merchant.id}/discounts/new")
+
+      expect(page).to have_content("Min items must be greater than 0")
+    end
+
+    it "cant process a percent more than 100" do
+      visit "/merchant"
+
+      click_on "Add Bulk Discount"
+
+      expect(current_path).to eq("/merchant/#{@merchant.id}/discounts/new")
+
+      fill_in :name, with: "10% Discount!"
+      fill_in :percentage, with: 10
+      fill_in :min_items, with: "string"
+      fill_in :description, with: "something"
+
+      click_on "Submit"
+
+      expect(current_path).to eq("/merchant/#{@merchant.id}/discounts/new")
+
+      expect(page).to have_content("Min items is not a number")
+    end
   end
 end
