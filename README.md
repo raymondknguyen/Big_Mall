@@ -2,8 +2,7 @@
 
 ## Overview - 
 Bulk discount allows merchant to create, edit and destroy discounts. When created, bulk discount 
-allows merchant to preset a percent off an item if a user buys the minimun required required amount
-of that item. As a user if the merchant has multiple discount, only the highest disocunt the user
+allows merchant to preset a percent off an item if a user buys the minimun required amount. As a user, if the merchant has multiple discount, only the highest discount the user
 qualifies for is active.
 
 
