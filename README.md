@@ -8,7 +8,7 @@ qualifies for is active.
 
 # Monster Shop - Turing Back End Engineering, Module 2, Group Project
 #### Heroku Link
-https://monster-shop-dreamteam.herokuapp.com/
+https://big-mall.herokuapp.com/
 
 #### Contributors
 [Jordan Williams](https://github.com/iEv0lv3)
