@@ -1,4 +1,4 @@
-# Monster Shop - Bulk Discount - Solo Feature
+# Big Mall - Bulk Discount - Solo Feature
 
 ## Overview - 
 Bulk discount allows merchant to create, edit and destroy discounts. When created, bulk discount 
