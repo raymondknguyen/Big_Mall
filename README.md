@@ -1,4 +1,5 @@
 # Big Mall - Bulk Discount - Solo Feature
+<p> Built in 14 days</p>
 
 ## Overview - 
 Bulk discount allows merchant to create, edit and destroy discounts. When created, bulk discount 
